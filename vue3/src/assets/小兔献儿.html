@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/С���׶�/css/С���׶�.css">
+    <link rel="stylesheet" href="../assets/С���׶�/css/reset.css">
+    <script src="../assets/С���׶�/js/jquery.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <nav class="app-topnav">
+            <div class="container">
+                <ul>
+                    <li><a href="#">请先登录</a></li>
+                    <li><a href="#">免费注册</a></li>
+                    <li><a href="#">我的订单</a></li>
+                    <li><a href="#">会员中心</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">手机版</a></li>
+                </ul>
+            </div>
+        </nav>
+        <header class="app-header" data-v-3c12b367>
+            <div class="container" data-v-3c12b367>
+                <h1 class="logo" data-v-3c12b367>
+                    <a href="" data-v-3c12b367>小兔鲜</a>
+                </h1>
+                <ul class="app-header-nav">
+                    <li><a href="">首页</a></li>
+                    <!-- 渲染出导航数据 -->
+                    <!-- <li><a href=""></a></li> -->
+                </ul>
+                <div class="search">
+                    <i class="iconfont icon-search" data-v-3c12b367>
+                        <input type="text" placeholder="搜一搜" data-v-3c12b367>
+
+                    </i>
+                </div>
+                <div class="cart" data-v-19a1524c data-v-3c12b367>
+                    <a href="#/cart" class="curr" data-v-19a1524c="">
+                        <i class="iconfont icon-cart" data-v-19a1524c="">
+                        </i><em data-v-19a1524c=""></em></a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="home-category">
+                    <ul class="menu">
+                        <!-- 左边菜单 -->
+                        
+                    </ul>
+                    <div class="layer">
+                        <!-- <h4>分类推荐
+                           <small>根据您的购买或浏览记录推荐 
+                        <ul>
+                            <li class="">
+                                <a href="" class="router-link-active">
+                                    <img src="" alt="">
+                                    <div class="info">
+                                        <p class="name ellipsis-2"></p>
+                                        <p class="desc ellipsis"></p>
+                                        <p class="price"><i>￥</i></p>
+                                    </div>
+                                </a>
+                            </li>
+                            <ul>
+                                </small>
+                                </h4> -->
+                    </div>
+                </div>
+                <div class="home-banner">
+                    <div class="xtx-carousel">
+                        <ul class="banerlist">
+                            <!-- 图片 -->
+                        </ul>
+                        <span class="left"> < </span>
+                        <span class="right"> > </span>
+                                <ol class="carousel">
+                                    <!-- 小圆点 -->
+                                    <li index="0" class="active"></li>
+                                    <li index="1"></li>
+                                    <li index="2"></li>
+                                    <li index="3"></li>
+                                    <li index="4"></li>
+                                </ol>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- <script src="../js/小兔献儿.js"></script> -->
+
+    <script>
+        $(function () {
+            // 请求轮播数据
+            $.ajax({
+                url: 'https://apipc-xiaotuxian-front.itheima.net/home/banner',
+                type: 'get',
+                dataType: 'json', // 返回的数据格式  xml html text
+                success: function (res) {
+                    // 断点调试 
+                    // debugger;
+                    if (res.msg == '操作成功') {
+                        bannerInit(res.result); //轮播图
+                    }
+                }
+            })
+
+            getNav();
+            // 请求头部导航数据
+            function getNav() {
+                $.ajax({
+                    url: 'https://apipc-xiaotuxian-front.itheima.net/home/category/head',
+                    dataType: 'json', //返回的数据类型  []{}
+                    type: 'get', // get post  
+                    success: function (res) {
+                        // console.log(res);                
+                        if (res.msg == '操作成功') {
+                          
+                            // console.log(res.result[3].name);  //查找到下面的元素
+                            var html = `<li>首页</li>`
+                            for (var i = 0; i < res.result.length; i++) {
+                                html += ` <li class="home">
+                                    ${res.result[i].name}
+                                    <div class="nav_big_li">                        
+                                        <ul>  
+                                        </ul>
+                                    </div>
+                                </li>`
+
+                            }
+                            $('.app-header-nav').html(html);
+                            //渲染侧边栏
+                            bannerLeftList(res.result);
+                        }
+                    }
+                })
+
+                $('.app-header-nav').on('mouseover', 'li.home', function () {
+                    // console.log(1);
+                    var arr = result.result[$(this).index() - 1].children;
+                    // console.log(arr);         
+                    var html = ''
+                    for (var i = 0; i < arr.length; i++) {
+                        html += `<li class="nav-box">
+                    <img src="${arr[i].picture}" alt="">
+                        <p>${arr[i].name}</p>
+                    </li>`
+                    }
+                    $(this).children().children().html(html)
+                    $(this).children().stop().slideDown()
+
+                })
+
+
+                $('.app-header-nav').on('mouseout', 'li.home', function () {
+                    $(this).children().stop().slideUp()
+                })
+            }
+
+            function bannerInit(result) {
+                // console.log(result.length); // 5
+                getBannerList();
+                function getBannerList() {
+                    // 渲染轮播图
+                    var html = '';
+                    for (var i = 0; i < result.length; i++) {
+                        html += ` 
+                            <li> <img src="${result[i].imgUrl}"  /></li>
+                        `
+                    }
+                    $('.banerlist').html(html);
+                }
+
+                var index = 0;
+                // 自动轮播图
+                var timer = setInterval(moveRight, 1000);
+
+                // 封装左
+                $('.left').click(function () {
+                    index--;
+                    if (index < 0) { // index ==5
+                        index = result.length - 1;
+                    }
+                    $('.banerlist li').fadeOut(200);
+                    $('.banerlist li').eq(index).fadeIn(200);
+                    // 小圆点
+                    $('.carousel li').removeClass('active');
+                    $('.carousel li').eq(index).addClass('active')
+                    console.log(index);
+                })
+                // 封装右
+                $('.right').click(function () {
+                    moveRight();
+                })
+
+                function moveRight() {
+                    index++;
+                    if (index == result.length) { // index ==5
+                        index = 0;
+                    }
+                    $('.banerlist li').fadeOut(200);
+                    $('.banerlist li').eq(index).fadeIn(200);
+
+                    //圆点
+                    $('.carousel li').removeClass('active');
+                    $('.carousel li').eq(index).addClass('active')
+                }
+
+                $('.xtx-carousel').hover(function () {
+                    clearInterval(timer);
+                },
+                    function () {
+                        timer = setInterval(moveRight, 1000);
+                    })
+            }
+
+            function bannerLeftList(res) {
+                //渲染左侧导航
+                var html = '';
+                for(var i=0;i<res.length;i++){
+                    html+=`
+                            <li class="nav-tab">
+                                <span>${res[i].name}</span>
+                                <span>${res[i].children[1]?
+(res[i].children[0].name+' '+res[i].children[1].name):res[i].children[0].name}</span>
+                            </li>
+                        `
+                     $('.menu').html(html);
+                }
+                //根据 鼠标移入时根据下标 找到 result[index].goods
+                // 给左侧导航加事件
+                $('.menu').on('mouseover','li',function(){
+                    $(this).css({'backgroundColor':'rgb(39,186,155)'})
+                })
+                $('.menu').on('mouseout','li',function(){
+                    $(this).css({'backgroundColor':''})
+                    var index = $(this).index();
+                    console.log( res[index].goods );
+                    // for 
+                })
+            }
+
+           
+
+            /* 
+                1. 请求轮播图接口，将轮播图渲染
+                2. 写轮播逻辑
+                     1. 封装左、右 事件
+                     2. 自动轮播调用右事件
+                     3. 在左 右事件中控制小圆点
+                     4. 鼠标移出，移入，关闭启动定时器
+                3.在渲染导航头的接口中，调用渲染 左侧导航的方法
+                4.左侧导航的方法
+                    1.for 循环拼数据
+                    2.给每个侧边栏li 添加鼠标移入移出事件，并在这个事件中 根据下标找到要渲染的数据
+                    3.渲染数据
+
+            */
+
+
+
+
+
+        })
+    </script>
+</body>
+
+</html>

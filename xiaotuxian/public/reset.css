@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+ul,li{
+    list-style: none;
+}
+.gtwidth{
+    width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery.js"></script>
+</head>
+
+<body>
+    <!-- <button>点击</button> -->
+    <h3></h3>
+    <h2></h2>
+    <a href="">点击随机</a>
+    <script>
+        /*
+        jq 绑定事件
+        $().事件名(function(){})
+        $(页面中存在的父元素).on(事件名,绑定事件的元素(选择器),处理函数)//相当于事件委托找父级
+        
+        
+        */
+        // $("button").click(function(){
+        //     $("button").after($(`<p>添加的p</p>`)) 
+        // })
+
+        // $("body").on('click','p',function(){
+        //     console.log("in");
+        // })
+
+        function fn() {
+            var str = ['生命周期', 
+            'vue获得事件对象 $event  ',
+             '指令', 
+             '事件修饰符 ',
+              '表单修饰符 ', 
+              'watch  ',
+               'computed',
+                'computed 和watch的区别', 
+                'vue自定义指令', 'vue 过滤器    ', 'vue数组的变异方法', '动态组件', '组件通信', '$nextTick'
+            ]; //字符串
+            var arr = [] //空数组
+            while (arr.length < 6) { //判断 长度<4
+                var ran = Math.floor(Math.random() * (str.length)) //随机数
+                if (arr.indexOf(str[ran]) == -1) { //判断  是否有重复的
+                    arr.push(str[ran]) //尾部添加
+                }
+            }
+            return arr //拼接 
+        }
+        console.log(fn());
+        var a = fn()
+
+        var h3 = document.querySelector('h3')
+        h3.innerText = a
+
+
+
+        function ly() {
+            var yu = ['MVC、MVP与MVVM模式',
+             '说一下你对渐进式框架的理解？',
+              '请描述vue的优点(特点优势)是什么？缺点是什么？',
+               'vue过渡动画', 'vue双向数据绑定原理',
+                'Object.defineProperty()方法的作用是什么？',
+                 '什么是虚拟DOM及diff算法',
+                  'key的作用',
+                   'solt 如何使用',
+            '路由跳转两类',
+               '路由跳转传参数',
+                '路由传参 query和params的区别',
+                 '子路由', 
+                 'vuex 的属性',
+                 '路由元信息',
+            ]
+            var heng = []
+            while (heng.length <14) {
+                var qwe = Math.floor(Math.random() * (yu.length))
+                if (heng.indexOf(yu[qwe]) == -1) {
+                    heng.push(yu[qwe])
+                }
+            }
+            return heng
+        }
+        var q = ly()
+        var h2 = document.querySelector('h2')
+        h2.innerText = q
+    </script>
+</body>
+
+</html>

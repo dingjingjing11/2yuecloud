@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        相同点：都是改变this指向
+        call:call(要替换this的对象，参数1，参数2)  比如 obj.say（要替换this的对象，say需要的参数
+        bind:bind(要替换this的对象，参数1，参数2)() 需要在调一次函数 
+        apply:apply(要替换的this的对象，[参数1，参数2])
+        不同点：
+        apply 的第二个参数是[]
+        bind 需要二次调用
+        */
+        var obj ={
+            name:'狸猫',
+            say:function(){
+                alert(this.name)
+            }
+        }
+        obj.say.call({name:'太子'})  //{name:'太子'} 将替换obj.say 中的this
+        obj.say.apply({name:'太子'},['?','!'])  //
+
+        var fnsay=obj.say.bind({name:'太子'},['?','!'])
+        fnsay()
+
+    </script>
+</body>
+</html>

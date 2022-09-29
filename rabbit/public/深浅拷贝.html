@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        浅拷贝
+         */
+    
+    var arr=[]
+    var arr2=arr; //浅拷贝：只复制地址不复制值
+    arr2.push(1)
+    console.log(arr);//[1]
+
+   var n=10
+   var m=n
+      m++
+   console.log(n);  //10
+
+
+   var obj={name:'vue',age:6,gz:{title:'生命周期',arr:[1,2,3]}}
+   var obj2={}
+   function cloneObj(obj,obj2){
+    for(var key in obj){
+    //   if(obj[key] instanceof Object){
+       if( obj2[key]=(Array.isArray(obj[key])?[]:{})) { //判断是数组还是对象
+        obj2[key]={}
+        cloneObj(obj[key],obj2[key])
+      }else{
+        obj[key]=obj2[key]
+      }
+      }  
+    return obj2
+   }
+   var res= cloneObj(obj,obj2)
+   console.log(res);
+   
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" oninput="inp()">
+    <p></p>
+
+    
+    <script>
+    //正则表达式 :表单验证。字符串规则匹配，被多种编程语言支持
+    //创建两种方式：
+        //g 全局匹配  i:不区分大小写  m:多行匹配
+    var reg = new RegExp()
+    
+    var str='446556'
+    var reg=/6/g
+    console.log(reg.exec(str)); // 2  查找 6 的下标
+    console.log(reg.exec(str)); // 5
+    console.log(reg.exec(str)); // null
+
+    var str='455是的455'
+    var reg =/[\u4e00-\u9fa5]/g
+    console.log(reg.test(str));
+    console.log(str.match(reg));
+
+    var str ='455sfrh56dg89'
+    console.log(str.split(/[a-z]+/)); // 455 56 89 切除中间字母部分
+
+    // var str ='strufnjjnnjk'
+    // var reg = /[abc]/ //规则为：包含abc 中的任意一个,加[]是abc中的任意一个,不加[]
+    // //是 符合abc ，返回true
+    // var reg = /[a-z]/ // str包含26个小写字母
+    // var reg = /[^abc]/ //str 包含除了abc之外的任意字符
+    // var reg = /[0-9]/ //规则为：str包含数字
+    // var reg = /[A-Z]/ //26个大写字母
+    // var reg = /[a-zA-Z]   //所有的大小写字母
+    // var reg = /abd|dr/ //包含abd或者ef
+    // var reg = /./    //一切字符，除了结束符，换行符
+    //  var reg =/\w/    // \w: 数字，字母，_ 下划线 
+    //        //  大w         // \W:除了数字，字母，_ 下划线
+    // var reg =/\d/  //\d:[0-9]  \D 非数字
+    // var reg =/\s/   //  \s:空格
+
+    // var bool=reg.test(str)
+    // console.log(bool); // false  str符合这一规则，返回true
+     var reg =/c+/   // +:至少包含一个
+     var reg =/c*/    // *:0个或者多个
+     var reg =/c?/     // ?:0个或1个
+     var reg =/^c?$/   // ^n:以n开头  n$:以n结尾  ^n$ 完全匹配  必须是0 （''）或者1个c
+     var reg =/\d{4}/    //n{4} 4个n，
+     var reg =/^\d{4}$/    //必须是4个数字
+     var reg =/^\d{4,6}$/  // 4-6个数字
+     var reg =/^\d{4,}$/  //4个以上数字 
+     var reg =/6(?=55)/  //匹配55前面的6
+     var reg =/6(?!55)/  //匹配不在55前面的6
+     var reg = str.match(reg);
+    //  console.log(res);
+    // var str ='sd sg sh sj ' //取消空格
+    // var reg =/\s/g   // 空格加g 取消空格
+    // console.log(str.replace(reg,''));
+// 敏感字替换 *  狗，坑，傻
+    function inp(){
+        var val=document.querySelector('input').value;
+        var reg = /狗|坑|傻子/g;
+        document.querySelector('p').innerText=val.replace(reg,'*')
+    }
+ var str = 'https://www.e=1&123=34&'
+ 
+
+   
+</script>
+</body>
+</html>

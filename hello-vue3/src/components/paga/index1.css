@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+
+textarea {
+    resize:  none;
+    width: 600px;
+    height: 200px;
+    border: 1px solid #000;
+}
+
+section img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+button {
+    margin-left: 200px;
+    width: 50px;
+    height: 30px;
+    border: 1px solid #000;
+}
+.ul1 {
+    padding: 30px 30px 30px 10px;
+}
+
+.ul1 img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+li {
+    overflow: hidden;
+}
+.fl {
+    float: left;
+}
+
+.ul1 div {
+    width: 500px;
+}

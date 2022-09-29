@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<style>
+    .view{
+        width: 600px;
+        height: 400px;
+        background-color: blue;
+        margin: 0 auto;
+    }
+    input{
+        width: 60%;
+        height: 30px;
+        margin-left: 20%;
+    }
+    
+    .content li{
+        list-style: none;
+        width: 100%;
+        height: 30px;
+        margin-top: 20px;
+        border-bottom: 1px solid #ccc;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="view">
+            <input type="text" placeholder="请输入留言内容" v-model="val"  @keydown.enter="keydown">
+            <div class="content">
+                <ul>
+                    <li v-for="(item,index) in  arr"></li>
+                    <span>{{item.title}}</span>
+                    <span>{{item.time}}</span>
+                    <li ></li>
+                    <li></li>
+                    <a href="javascript:;" @click="deleteOne(index)">删除</a>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                val:'',
+                arr:[]
+            },
+            methods:{
+                keydown(){
+                   console.log(this.val); 
+                   var time=new Date()
+                   var timeStr=time.getHours()+':'+time.getMinutes()+':'+time.getSeconds()
+                   this.arr.push({title:this.val,time:timeStr})
+                   this.val=''
+                },
+                deleteOne(index){
+                    this.arr.splice(index,1)
+                }
+
+            }
+        })
+
+    </script>
+</body>
+</html>

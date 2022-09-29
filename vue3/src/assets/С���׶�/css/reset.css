@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+ul,li {
+    list-style: none;
+}
+i,em,b,strong{
+    font-weight: 400;
+    font-style: normal;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+/* 共同宽度 */
+.gtwidth {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* input */
+input,select,textarea {
+    outline: none;
+    /* 取消外轮廓线 */
+}
+textarea {
+    resize: none;
+    /* 取消拖拽效果 */
+}
+img {
+    vertical-align: top;
+    /* 取消图片上下间距 */
+    border: 0;
+    /* 取消ie6图片产生边框的问题     兼容问题 */
+}
+.clearfix:after{
+    display: table;
+    content: "";
+    clear: both;
+}
+
+/* 清除浮动 */
+.clearfix:after,clearfix:before{
+    display: table;
+    content: "";
+}
+.clearfix:after{
+    clear: both;
+}

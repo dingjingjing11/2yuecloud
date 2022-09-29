@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index1.css">
+    <link rel="stylesheet" href="./reset.css">
+</head>
+<style>
+    li{
+        list-style: none;
+    }
+    .search-box{
+        position: relative;
+    }
+    .content{
+        display: none;
+        width: 479px;
+        height: 500px;
+        border: 2px solid blue;
+        position: absolute;
+        left:0px;
+        top:42px;
+        border-top: 0px;
+    }
+    .content >div{
+        width: 96%;
+        border-top:2px solid #ccc;
+        margin:0 auto;
+    }
+</style>
+<body>
+    <ul class="clearfix   ul1">
+        <li>
+            <a href="">首页</a>
+            <!-- <div class="box" >
+                <ul  class="ul2">
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术1</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术1</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术1</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                   
+                    
+                </ul>
+        </div> -->
+        </li>
+        <li><a href="">首页</a></li>
+        <li><a href="">首页</a></li>
+        <li><a href="">首页</a></li>
+        <li><a href="">首页</a></li>
+        <li onmouseover="over()" onmouseout="out()">
+            <a href="" class="more"  >更多</a>
+            <div class="box" >
+                <ul  class="ul2">
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                    <li>
+                        <img src="./newwenku-d8c9b7b0fb.png" alt="">
+                        <p>学术</p>
+                    </li>
+                   
+                    
+                </ul>
+        </div>
+        </li>
+    </ul>
+
+    <div class="search-box" >
+        <span class="inp-box">
+            <input type="text" class="inp">
+            <i class="qk"></i>
+        </span>
+        <!-- 下边是右盒子button -->
+
+        <div class="content">
+            <div ></div>
+        </div>
+    </div>
+    
+
+    <script>
+       var box =  document.querySelector('.inp-box');
+       var inp =  document.querySelector('.inp');
+       var content = document.querySelector('.content')
+        inp.onfocus = function(){
+            //获取焦点 改变边框颜色，显示下方盒子( 左下边框无圆角,下边框消失 )
+            inp.style.borderColor = 'blue';
+            inp.style.borderRadius = '10px 0px 0px 0px';
+            inp.style.borderBottom = '0px';
+            content.style.display = 'block';
+        }
+        inp.onblur=function(){
+            //失去焦点  改变边框颜色  隐藏下方盒子( 左下边框【有圆角】,下边框【出现】 )
+            inp.style.borderColor = '#ccc';
+            inp.style.borderRadius = '10px 0px 0px 10px';
+            inp.style.borderBottom = '2px solid #ccc';
+            content.style.display = 'none';
+        }
+       box.onmouseover = function(){
+          // 没有获取焦点的情况下 ，让边框颜色加深
+          //    inp == document.activeElement   true 是获取了焦点 否则false 就是没有获取
+          if( inp !== document.activeElement ){ // 没获取焦点
+              inp.style.borderColor = '#333'
+          }
+       }
+       box.onmouseout = function(){
+           // 没有获取焦点的情况下 ，让边框颜色变浅
+           if( inp !== document.activeElement ){ // 没获取焦点
+              inp.style.borderColor = '#ccc'
+           }
+       }
+
+
+
+    </script>
+
+    <script>
+        var box =  document.querySelector('.box');
+        function over(){
+            console.log('over');
+            // 显示 子盒子
+            box.style.display = 'block';
+        }
+        function out(){
+            console.log('out')
+            box.style.display = 'none';
+        }
+        // 因为有很多个li所以 使用for循环添加
+        var liArr = document.querySelectorAll('.ul2 li');
+        for(var i=0;i<liArr.length;i++){
+            liArr[i].onmouseover=function(){
+                //this就是我们鼠标移入的那个li
+                this.style.backgroundColor = '#ccc';
+            }
+            liArr[i].onmouseout=function(){
+                this.style.backgroundColor = '#fff';
+            }
+        }
+        // 作业1. 给每个导航都添加一个 显示的盒子
+    </script>
+</body>
+
+</html>

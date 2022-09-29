@@ -1,0 +1,30 @@
+{
+  "id": "3641192",
+  "name": "icon",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "700853",
+      "name": "头像",
+      "font_class": "touxiang",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "925645",
+      "name": "头像",
+      "font_class": "icontouxiang",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "4485705",
+      "name": "密码锁",
+      "font_class": "mimasuo",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}

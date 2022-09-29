@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //浏览器存储信息会一直存在
+        localStorage
+           localStorage.setItem('属性名','要存的值')
+           localStorage.属性名=属性值
+           localStorage.getItem('属性名')
+           localStorage.属性值
+         //  localStorage.removeItem('属性名') 清除某个属性名
+        //   localStorage.clear()清除所有的 localStorage
+      //  sessionStorage 临时存储，浏览器关闭会消失
+      //  sessionStorage.setItem('属性名'属性值')
+     // sessionStorage.clear() 清除所有的 sessionStorage
+
+       sessionStorage.getItem(属性值)
+         
+        localStorage.setItem('uname','tom')
+        var uname=localStorage.getItem('uname')
+        console.log(uname);
+
+        sessionStorage.setItem('sex','男')  
+
+        console.log( sessionStorage.getItem('sex'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //原型 prototype:每个构造函数上都存在一个原型对象，当我们在这个原型对象上添加属性和方法,
+        //每个通过构造函数创建出的对象，都会共享这个属性和方法
+
+        function Fn(name,age){
+            this.name=name
+            this.age=age
+        }
+        Fn.prototype.say=function(){
+            alert(this.name)
+        }
+        var f1=new Fn('vue',6)
+        var f2 = new Fn('react',5)
+        console.log(f1.say==f2.say); //trueX
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3483745 */
+  src: url('iconfont.woff2?t=1656060734361') format('woff2'),
+       url('iconfont.woff?t=1656060734361') format('woff'),
+       url('iconfont.ttf?t=1656060734361') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shouji:before {
+  content: "\e600";
+}
+
+.icon-gouwuche:before {
+  content: "\e63f";
+}
+

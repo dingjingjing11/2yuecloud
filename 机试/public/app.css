@@ -1,0 +1,206 @@
+header {
+    height: 53px;
+    background: #333;
+  }
+  .u1 {
+    display: flex;
+    height: 53px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .u1 a {
+    padding: 0 7px;
+    color: #cdcdcd;
+    line-height: 1;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .u1 span {
+    color: #918f8f;
+  }
+  .u1 i {
+    color: #ddd;
+    position: relative;
+    left: 3px;
+    top: 1px;
+  }
+  .u1 a:hover{
+    color: #27ba9b
+  }
+  .a1:hover i{
+     color: #27ba9b
+  }
+  nav{
+    height: 132px;
+    width: 100%;
+    background: #fff;
+    position: relative;
+  }
+  nav .gtkd{
+        display: flex;
+      align-items: center;
+      height: 100%;
+  }
+  .logo{
+    width: 200px;
+  }
+  .logo a{
+    display: block;
+      height: 132px;
+      width: 100%;
+      text-indent: -9999px;
+      background: url(http://erabbit.itheima.net/img/logo.0940ebb5.png) no-repeat center 18px/contain;
+  }
+  .u2{
+     width: 820px;
+      display: flex;
+      justify-content: space-around;
+      padding-left: 40px;
+      z-index: 999;
+      position: relative;
+  }
+  .u2>li{
+      margin-right: 40px;
+      width: 40px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 40px;
+      display: inline-block;
+      height: 40px;
+  }
+  .u2>li:hover a{
+    color: #27ba9b;
+    border-bottom: 1px solid #27ba9b;
+
+  }
+
+
+  .search{
+        width: 170px;
+      height: 32px;
+      position: relative;
+      border-bottom: 1px solid #e7e7e7;
+      line-height: 32px;
+      margin-left: 10px;
+  }
+  .search input{
+    width: 140px;
+      padding-left: 5px !important;
+      color: black;
+      padding: 0;
+      outline: none;
+      border: none;
+      -webkit-appearance: none;
+  }
+  .search i {
+      position: relative;
+      top: 7px;
+      left: -2px;
+  }
+  .search img{
+    width: 20px;
+    height: 20px;
+  }
+  .car{
+    width: 50px;
+      position: relative;
+      z-index: 600;
+      margin-left: 14px;
+  }
+  .cari {
+    font-size: 25px !important;
+    color: #000 !important;
+  }
+  .zero{
+        font-style: normal;
+      position: absolute;
+      right: 12px;
+      top: -4px;
+      padding: 1px 6px;
+      line-height: 1;
+      background: #e26237;
+      color: #fff;
+      font-size: 10px;
+      border-radius: 10px;
+      font-family: Arial;
+  }
+  
+  .ycbox{
+    width: 1240px;
+    background-color: #fff;
+    position: absolute;
+    left: -200px;
+    top: 55px;
+    /* height: 132px; */
+    overflow: hidden;
+    box-shadow: 0 0 5px #ccc;
+    transition: all .2s .1s;
+    z-index: 0;
+    height: 1;
+
+  }
+  #app{
+    background: #f5f5f5;
+    width: 100%;
+    height: 1695px;
+  }
+  .ycbox ul{
+        display: flex;
+      flex-wrap: wrap;
+      padding: 0 70px;
+      align-items: center;
+      height: 132px;
+  }
+  .ycbox li{
+        width: 110px;
+      text-align: center;
+  }
+  .ycbox img{
+        width: 60px;
+      height: 60px;
+      vertical-align: middle;
+  }
+  .ycbox p{
+    padding-top: 10px;
+    font-size: 15px !important;
+  }
+  .ycbox li:hover {
+    color: #27ba9b;
+  }
+  .fade-enter,.fade-leave-to{
+    opacity:0; 
+  }
+  .fade-enter-active,.fade-leave-active{
+    transition:opacity .5s ease;
+  }
+  .bv{
+    color: #27ba9b !important;
+    border-bottom: 1px solid  
+  }
+  .show{
+    height: 80px !important;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+  }
+  .show-right{
+    width: 220px;
+    display: flex;
+    text-align: center;
+    padding-left: 40px;
+    border-left: 2px solid #27ba9b;
+ 
+  
+  }
+  .show-right a{
+    width: 38px;
+    margin-right: 40px;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .show-right a:hover{
+color: #27ba9b 
+  };
+
+  

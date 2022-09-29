@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    #### 11、如何分包加载？分包加载的优势在哪？
+
+在构建时打包成不同的分包，用户在使用时按需进行加载。
+
+整个小程序所有分包大小不超过 20M，单个分包/主包大小不能超过 2M
+
+#### 12、在你开发小程序的过程中遇到过什么坑？ 你是怎么解决的？
+
+1、wx.navigateTo无法打开页面
+一个应用同时只能打开10个页面，请避免多层级的交互方式，或使用wx.redirectTo
+
+3、小程序 模版语法中 {{}} 有一些js api无法使用  ，最后我使用 wxs 封装了一个 indexOf 方法
+
+#### 13、小程序与webview(html5网页)之间的跳转
+
+1、
+
+```
+<web-view src="https://域名"></web-view>
+
+```
+
+注：小程序跳转webview 必须要在小程序后台使用管理员添加业务域名
+
+2、webview （网页内）跳转小程序
+
+```
+// 引入微信小程序库
+wx.miniProgram.navigateTo({url:’pages/login/login’+’$params’})
+
+wx.miniProgram.switchTab({url:’/pages/index/index’})
+```
+
+#### 14、小程序的生命周期函数
+
+| 属性                                                         | 类型     | 默认值 | 必填 | 说明                                   | 最低版本                                                     |
+| ------------------------------------------------------------ | :------- | :----- | :--- | :------------------------------------- | :----------------------------------------------------------- |
+| [onLaunch](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onLaunch-Object-object) | function |        | 否   | 生命周期回调——监听小程序初始化。       |                                                              |
+| [onShow](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onShow-Object-object) | function |        | 否   | 生命周期回调——监听小程序启动或切前台。 |                                                              |
+| [onHide](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onHide) | function |        | 否   | 生命周期回调——监听小程序切后台。       |                                                              |
+| [onError](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onError-String-error) | function |        | 否   | 错误监听函数。                         |                                                              |
+| [onPageNotFound](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onPageNotFound-Object-object) | function |        | 否   | 页面不存在监听函数。                   | [1.9.90](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html) |
+| [onUnhandledRejection](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onUnhandledRejection-Object-object) | function |        | 否   | 未处理的 Promise 拒绝事件监听函数。    | [2.10.0](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html) |
+| [onThemeChange](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onThemeChange-Object-object) | function |        | 否   | 监听系统主题变化                       |                                                              |
+
+#### 15、小程序页面生命周期
+
+1. data：页面的初始数据
+1. 【onLoad】：生命周期回调—监听页面加载； 只调用一次，可以获得路由传的参数；
+1. 【onShow】：生命周期回调—监听页面显示;
+1. 【onReady】：生命周期回调—监听页面初次渲染完成；只调用一次
+1. 【onHide】：生命周期回调—监听页面隐藏；
+1. 【onUnload】:生命周期回调—监听页面卸载；页面卸载时触发。如[wx.redirectTo](https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.redirectTo.html)或wx.navigateBack
+1. onPullDownRefresh:监听用户下拉动作
+1. onReachBottom:页面上拉触底事件的处理函数
+1. onShareAppMessage:用户点击右上角转发
+1. onPageScroll:页面滚动触发事件的处理函数
+1. onResize:页面尺寸改变时触发，详见 响应显示区域变化
+1. onTabItemTap:点击当前页面对应的 tabBar 导航时触发；
+
+####  16、小程序授权登录流程
+
+我之前做的授权登录是
+
+1、先调用wx.login拿到 code
+
+2、使用code 调第三方服务器（api.cc）进行登录，如果接口返回值 提示 没有注册
+
+3、wx.login 拿到code   wx.getuserinfo 拿到 iv   entoryData 
+
+4、使用这三个 和第三方服务器 进行注册  注册成功后 在调用 登录 ,登录成功 本地存储token
+
+
+
+#### 17、 小程序的wxss和css有哪些不一样的地方?
+
+WXSS 和 CSS 类似，不过在 CSS 的基础上做了一些补充和修改
+
+- 尺寸单位 rpx
+
+  rpx 是响应式像素,可以根据屏幕宽度进行自适应。规定屏幕宽为 750rpx。如在 iPhone6 上，屏幕宽度为 375px，共有 750 个物理像素，则 750rpx = 375px = 750 物理像素
+
+- 使用 @import 标识符来导入外联样式。@import 后跟需要导入的外联样式表的相对路径，用;表示语句结束
+
+  ```
+  /** index.wxss **/
+  @import './base.wxss';
+  
+  .container{
+      color: red;
+  }
+  ```
+
+  
+
+#### 18 小程序页面间有哪些传递数据的方法
+
+- · 使用全局变量实现数据传递 在 app.js 文件中定义全局变量 globalData， 将需要存储的信息存放在里面使用的时候，直接使用 getApp() 拿到存储的信息
+
+  ```
+  App({
+       // 全局变量
+    globalData: {
+      userInfo: null
+    }
+  })
+  
+  在任何页面 getApp() 
+  ```
+
+- · 使用 wx.navigateTo 与 wx.redirectTo 的时候，可以将部分数据放在 url 里面，并在新页面 onLoad 的时候初始化
+
+  ```
+  /pageA.js
+  
+  // Navigate
+  wx.navigateTo({
+    url: '../pageD/pageD?name=raymond&gender=male',
+  })
+  
+  // Redirect
+  wx.redirectTo({
+    url: '../pageD/pageD?name=raymond&gender=male',
+  })
+  
+  
+  // pageB.js
+  ...
+  Page({
+    onLoad: function(option){
+      console.log(option.name + 'is' + option.gender)
+      this.setData({
+        option: option
+      })
+    }
+  })
+  ```
+
+- 需要注意的问题：
+
+  wx.navigateTo 和 wx.redirectTo 不允许跳转到 tab 所包含的页面
+
+  onLoad 只执行一次
+
+- · 使用本地缓存 Storage 相关
+
+
+
+#### 19、 小程序如何实现下拉刷新?
+
+- 首先在页面的json 中的 window 配置 enablePullDownRefresh = true
+
+- 在 Page 中定义 onPullDownRefresh 钩子函数,到达下拉刷新条件后，该钩子函数执行，发起请求方法
+
+- 请求返回后，调用 wx.stopPullDownRefresh 停止下拉刷新
+
+> 下拉刷新和上拉加载是业务上一个很常见的需求，在微信小程序里，提供了下拉刷新的方法 onPullDownRefresh 。而实现上拉加载相对来说就比较不方便了
+
+
+
+**上拉加载**
+
+使用上拉触底事件 onReachBottom 监测滚动条滚动到底部，然后调用 加载数据接口
+
+**滚动容器实现上拉加载**
+
+使用< view-scroll  scroll-y="{{true}}" bindscrolltolower='lower'>
+
+在bindscrolltolower事件中检测 滚动到底部
+
+
+
+#### 20、bindtap和catchtap的区别是什么? 
+
+- 相同点：首先他们都是作为点击事件函数，就是点击时触发。在这个作用上他们是一样的，可以不做区-分
+
+- 不同点：他们的不同点主要是bindtap是不会阻止冒泡事件的，catchtap是阻值冒泡的
+
+#### 21、小程序有哪些事件 
+
+touch 事件
+
+touchstart	手指触摸动作开始	 
+touchmove	手指触摸后移动	 
+touchcancel	手指触摸动作被打断，如来电提醒，弹窗	 
+touchend	手指触摸动作结束	 
+tap	手指触摸后马上离开	 
+longpress	手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发	1.5.0
+longtap	手指触摸后，超过350ms再离开（推荐使用longpress事件代替）
+
+bindchange  input 改变
+
+bindblur   编辑器失去焦点时触发
+
+bindinput  编辑器内容改变时触发
+
+#### 22、如何自定义组件
+
+声明组件 在组件的 json中定义  component:true
+
+在组件的. js 中 使用 Component构造器 
+
+在app.json  或具体的页面中的   .json 文件中 配置 usingComponents {组件名：路径}
+
+Component  构造器内部属性
+
+data:私有数据
+
+properties: 接收父组件传递过来的 属性
+
+子传父： this.triggerEvent('myevent', 'hello')      bindmyevent = 'handler'   handler(val){ val.detail }
+
+observers：组件 数据（data中的数据  和 properties中的数据发生变化时调用）
+
+lifetimes:组件的生命周期 
+
+ created创建前  attached节点进入   detached 节点销毁  ready 渲染完成
+
+pageLifetimes: 组件所在页面的生命周期  （小程序页面page 生命周期）  比如  show 
+
+
+
+#### 23 说一下小程序组件中如何进行通信?
+
+1、父传子  
+
+ <子组件  myproperties ="{{值}}" />    
+
+子组件内部   properties:{ myproperties :{type:String, value:''}}
+
+2、子传父
+
+子组件  this.triggerEvent('事件名',值)
+
+父组件调用子组件：  <子组件  bind:事件名='处理函数'  />  处理函数的参数 就是接收到的值
+
+
+
+#### 24  说一下小程序的observers的理解?
+
+用于监听 properties 和 data 的变化
+
+```
+ //  监听 a,b 的值如果发生比变化 就重新计算
+  observers:{
+    "a,b":function(a,b){
+      // console.log(a,b);
+      this.setData({
+        c:a+b
+      })
+    }
+  }
+```
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //继承
+        //工厂模式
+        function fn(name){
+            var obj={}
+            obj.name=name
+            return obj
+        }
+        var fn=fn('vue')
+        //构造函数
+        function Fn(name,age){
+            this.name=name
+            this.age=age
+
+        }
+        var fn1=new Fn('tom',20)
+        //new 操作符的作用 创建空对象this,  返回this
+
+
+        function Person(name,age){
+            this.name=name
+            this.age=age
+            //这里可以声明函数，但是不推荐，这样会让每个person 对象都有一个独立的相同方法
+            this.say=function(){
+                alert(this.name)
+            }
+        }
+        function Student(name,age){ //继承父构造函数的属性和方法
+            //原理：调用父构造函数，改变this指向，创建自己的对象
+            Person.call(this,name,age)
+
+        }
+        var s=new Student('张三',20)
+        console.log(s);
+
+       // call 的作用：改变this指向
+       var obj ={
+        name:'太子',
+        say:function(){
+         console.log(this.name); //狸猫
+        }
+       }
+       obj.say() //太子
+
+       var obj2 ={
+        name:'狸猫',
+        say:function(){
+            console.log(this.name);
+        }
+
+       }
+       obj.say.call(obj2)  //将 obj 的this  换成obj2
+
+
+        function Create(tagname,id,className){
+            this.tagname=tagname
+            this.id=id
+            this.className=className
+            this.creatEle=function(){
+                var ele=document.creatElement(this.tagname)
+                ele.id=this.id
+                ele.className=this.className
+                return ele
+            }
+        }
+        var ele=new Create('div','box','active')
+        var div=ele. creatEle()
+
+        
+        Person.prototype.say=function(){
+            alert(this.name)
+        }
+        function Student(name,age){ //继承父构造函数的属性和方法
+             //原理：调用父构造函数，改变this指向，创建自己的对象
+            Person.call(this,name,age)
+        }
+        Student.prototype.say =Person.prototype.say
+        var s=new Student('张三',20)
+        console.log(s);
+        s.say()
+
+    </script>
+</body>
+</html>

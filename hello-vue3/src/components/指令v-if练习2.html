@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="输入数字查看内容" v-model="val">
+        <!-- 输入  新闻 娱乐  -->
+        <div v-if="val=='新闻'"> 唐山5虎</div>
+        <div v-else-if="val=='娱乐'"> 周杰伦新歌</div>
+        <div v-else>请输入正确内容</div>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                show:false,
+                val:''
+            },
+            methods: {
+              
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书管理信息表</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrityd:\软件\Microsoft VS Code\resources\app\out\vs\code\electron-browser\workbench\workbench.html="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="../public/vue.js"></script>
+    <style>
+        .btn {
+            padding: 0px 12px;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div id="app" class="container">
+        <h3 class="text-center text-primary">图书管理信息表</h3>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入图书名称" v-model="bookname"
+            @keydown.enter="add()">
+        <table class="table table-bordered table-hover table-striped text-center" width="500">
+            <tr>
+                <th class="text-center">id</th>
+                <th class="text-center">书名</th>
+                <th class="text-center">时间</th>
+                <th class="text-center">操作</th>
+            </tr>
+            <tr v-for="(item,index) in arr" :key="item.id">
+                <td>{{index+1}}</td>
+                <td>{{item.bookname}}</td>
+                <td>{{item.time}}</td>
+                <td><button class="btn btn-danger" @click="del(index)">删除</button></td>
+            </tr>
+            <tr v-if="arr.length==0">
+                <td colspan="4">暂无数据~</td>
+            </tr>
+            <tr v-else>
+                <td colspan="4"><button class="btn btn-danger" @click="delAll">全部删除</button></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        new Vue({
+            //挂载点
+            el: "#app",
+            //数据
+            data: {
+                arr: sessionStorage.getItem("arr") ? JSON.parse(sessionStorage.getItem("arr")) : [],
+                bookname: ""
+            },
+            //方法
+            methods: {
+                // 添加
+                add() {
+                    if (this.bookname == "") {
+                        alert("图书名称不能为空");
+                        return;
+                    }
+                    this.arr.push({
+                        bookname: this.bookname,
+                        time: new Date().toLocaleTimeString()
+                    });
+                    // 存储到本地
+                    sessionStorage.setItem("arr", JSON.stringify(this.arr))
+                    this.reset();
+                },
+                // 清空
+                reset() {
+                    this.bookname = "";
+                },
+                // 删除
+                del(index) {
+                    this.arr.splice(index, 1);
+                    // 存储到本地
+                    sessionStorage.setItem("arr", JSON.stringify(this.arr));
+                },
+                // 全部删除
+                delAll() {
+                    this.arr = [];
+                    // 存储到本地
+                    sessionStorage.setItem("arr", JSON.stringify(this.arr));
+                }
+ 
+            }
+        })
+    </script>
+</body>
+ 
+</html>
